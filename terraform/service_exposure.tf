@@ -55,7 +55,7 @@ resource "google_cloud_run_service" "exposure" {
       service_account_name = google_service_account.exposure.email
 
       containers {
-        image = "gcr.io/${data.google_project.project.project_id}/github.com/google/exposure-notifications-server/cmd/exposure:initial"
+        image = "${substr(var.region, 0, 2)}.gcr.io/${data.google_project.project.project_id}/github.com/google/exposure-notifications-server/cmd/exposure:initial"
 
         resources {
           limits = {

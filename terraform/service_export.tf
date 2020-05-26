@@ -67,7 +67,7 @@ resource "google_cloud_run_service" "export" {
       service_account_name = google_service_account.export.email
 
       containers {
-        image = "gcr.io/${data.google_project.project.project_id}/github.com/google/exposure-notifications-server/cmd/export:initial"
+        image = "${substr(var.region, 0, 2)}.gcr.io/${data.google_project.project.project_id}/github.com/google/exposure-notifications-server/cmd/export:initial"
 
         resources {
           limits = {
