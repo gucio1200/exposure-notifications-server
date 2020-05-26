@@ -95,10 +95,16 @@ resource "google_cloud_run_service" "exposure" {
   }
 }
 
-resource "google_cloud_run_service_iam_member" "exposure-public" {
-  location = google_cloud_run_service.exposure.location
+resource "google_service_account" "exposure-invoker" {
+  project      = data.google_project.project.project_id
+  account_id   = "en-exposure-invoker-sa"
+  display_name = "Cloud Run Exposure Notification Invoker"
+}
+
+resource "google_cloud_run_service_iam_member" "exposure-invoker" {
   project  = google_cloud_run_service.exposure.project
+  location = google_cloud_run_service.exposure.location
   service  = google_cloud_run_service.exposure.name
   role     = "roles/run.invoker"
-  member   = "allUsers"
+  member   = "serviceAccount:${google_service_account.exposure-invoker.email}"
 }
