@@ -18,6 +18,7 @@ set -eEuo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." &>/dev/null; pwd -P)"
 ALL_SERVICES="cleanup-export,cleanup-exposure,export,exposure,federationin,federationout"
+REGION_GCR="${REGION:0:2}"
 
 if [ -z "${PROJECT_ID:-}" ]; then
   echo "✋ Missing PROJECT_ID!" >&2
