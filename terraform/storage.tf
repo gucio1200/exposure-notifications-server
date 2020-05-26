@@ -23,6 +23,7 @@ resource "google_storage_bucket" "export" {
   project            = data.google_project.project.project_id
   name               = "exposure-notification-export-${random_string.bucket-name.result}"
   bucket_policy_only = true
+  location           = substr(var.region, 0, 2)
 }
 
 resource "google_storage_bucket_iam_member" "public" {
