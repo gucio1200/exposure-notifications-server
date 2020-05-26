@@ -25,7 +25,7 @@ steps:
   name: 'registry.hub.docker.com/library/docker:18'
   args: [
     'build',
-    '--tag', '${substr(var.region, 0, 2)}.gcr.io/${PROJECT_ID}/github.com/google/exposure-notifications-server/cmd/${_SERVICE}:${_TAG}',
+    '--tag', '${REGION_GCR}.eu.gcr.io/${PROJECT_ID}/github.com/google/exposure-notifications-server/cmd/${_SERVICE}:${_TAG}',
     '--build-arg', 'SERVICE=${_SERVICE}',
     '.',
   ]
@@ -34,5 +34,5 @@ steps:
   name: 'registry.hub.docker.com/library/docker:18'
   args: [
     'push',
-    '${substr(var.region, 0, 2)}.gcr.io/${PROJECT_ID}/github.com/google/exposure-notifications-server/cmd/${_SERVICE}:${_TAG}',
+    '${REGION_GCR}.gcr.io/${PROJECT_ID}/github.com/google/exposure-notifications-server/cmd/${_SERVICE}:${_TAG}',
   ]

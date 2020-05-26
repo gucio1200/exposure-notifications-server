@@ -35,5 +35,5 @@ steps:
       --project "${PROJECT_ID}" \
       --platform "managed" \
       --region "${_REGION}" \
-      --image "${substr(var.region, 0, 2)}.gcr.io/${PROJECT_ID}/github.com/google/exposure-notifications-server/cmd/${_SERVICE}:${_TAG}" \
+      --image "${REGION_GCR}.gcr.io/${PROJECT_ID}/github.com/google/exposure-notifications-server/cmd/${_SERVICE}:${_TAG}" \
       --no-traffic
